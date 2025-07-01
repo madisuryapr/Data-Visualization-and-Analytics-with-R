@@ -1,6 +1,6 @@
 # Indonesia Headline Inflation
 # This code objective is to visualize Indonesia's headline inflation trend
-# over a decade of data, starting from January 2015 until the most recent one (May 2025)
+# over a decade of data, starting from January 2015 until the most recent one (June 2025)
 
 # Load packages
 library(ggplot2)
