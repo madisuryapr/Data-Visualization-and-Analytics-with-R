@@ -12,4 +12,4 @@ In this folder, I utilize Indonesia's headline inflation data obtained from Bank
 
 Disclaimer: This README.md is solely conveyed by authors' perspective and does not represent any institution. 
 
-*The month-on-month (mom) inflation data can be obtained either from Bank Indonesia of Indonesia National Bureau of Statistics (Badan Pusat Statistik)
+*The month-on-month (mom) inflation data can be obtained either from Bank Indonesia or Indonesia National Bureau of Statistics (Badan Pusat Statistik)
