@@ -39,10 +39,10 @@ vis_inf <- ggplot(data = idn_inf,
     expand = c(0, 0),
     date_labels = "%b-%y",
     breaks = unique(c(seq.Date(from = as.Date("2015-01-01"),
-                               to = as.Date("2025-06-01"),
+                               to = as.Date("2025-07-01"),
                                by = "1 year"),
-                      as.Date("2025-06-01"))),
-    limit = c(as.Date("2015-01-01"), as.Date("2025-06-01"))
+                      as.Date("2025-07-01"))),
+    limit = c(as.Date("2015-01-01"), as.Date("2025-07-01"))
   )+
   scale_y_continuous(
     expand = c(0, 0), limits = c(-0.5, 8),
