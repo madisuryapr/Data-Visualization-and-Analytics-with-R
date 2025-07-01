@@ -10,5 +10,6 @@ In this folder, I utilize Indonesia's headline inflation data obtained from Bank
 
 - However, 2024 becomes the turning point for Indonesia's headline inflation where another declining trend began. In 2024, Indonesia experienced deflation for 5 months consecutively for its month-to-month (mtm) inflation*. Several analysts consider that this phenomenon is attributed to lower household purchasing power in consequence of slowing domestic demand for goods and services. The culmination of declining inflation trend can be seen in February 2025, where Indonesia for the first time since 25 years ago reached its deflation point for year-over-year inflation, positioning at -0.09% (yoy).
 
-Disclaimer: This README.md is solely conveyed by authors' perspective and does not represent any institution.
+Disclaimer: This README.md is solely conveyed by authors' perspective and does not represent any institution. 
+
 *The month-on-month (mom) inflation data can be obtained either from Bank Indonesia of Indonesia National Bureau of Statistics (Badan Pusat Statistik)
