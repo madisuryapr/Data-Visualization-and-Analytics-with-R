@@ -1,5 +1,5 @@
 # Indonesia Headline Inflation
-# This code objective is to visualize Indonesia's headline inflation trend
+# This code objective is to visualize Indonesia's headline inflation trajectory
 # over a decade of data, starting from January 2015 until the most recent one (June 2025)
 
 # Load packages
@@ -90,7 +90,7 @@ vis_inf <- ggplot(data = idn_inf,
 # View Indonesia's Headline Inflation time series chart
 vis_inf
 
-# Save Indonesia Headline Inflation chart
+# Save Indonesia's Headline Inflation chart
 ggsave(
   "Indonesia Headline Inflation.jpeg",
   plot = vis_inf,
