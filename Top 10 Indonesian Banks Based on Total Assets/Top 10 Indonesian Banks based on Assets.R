@@ -60,7 +60,7 @@ bank_vis <- ggplot(data = banks_assets,
     position = position_dodge(0.9)
 ) +
   labs(
-    title = "Two State-Owned Banks Become Top 3 Banks with The Highest Total Assets in Indonesia",
+    title = "Two State-Owned Banks Become Top 3 Banks with The Largest Total Assets in Indonesia",
     subtitle = "Top 10 Banks based on total assets for Q1-2025 (growth in percent year-over-year)",
     x = "Total Assets (Trillion IDR)",
     y = "",
