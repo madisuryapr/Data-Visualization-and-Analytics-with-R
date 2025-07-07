@@ -1,2 +1,2 @@
 # Data Visualization and Analytics with R
-In this repository, I implement my technical skills with R programming by implementing diverse packages to support data visualization and analytics process. Most of data that will I employ are around Economics, Banking, and Finance.
+In this repository, I implement my technical skill regarding R programming through data visualization and analytics processes. Most of data that will be employed are around Economics and Banking & Finance. In addition, the objective of this repository is to inform audience the current trend of economics and Bankinig & Finance
