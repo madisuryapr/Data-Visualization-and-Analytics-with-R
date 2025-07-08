@@ -72,8 +72,8 @@ bank_vis <- ggplot(data = banks_assets,
     breaks = seq(0, 3000, by = 500)
   ) +
   theme(
-    plot.background = element_rect(fill = "#FFF1E5"),
-    panel.background = element_rect(fill = "#FFF1E5"),
+    plot.background = element_rect(fill = "#FFF2E8"),
+    panel.background = element_rect(fill = "#FFF2E8"),
     panel.grid.major.y = element_blank(),
     panel.grid.major.x = element_line(color = "#000000", linewidth = 0.5, 
                           linetype = 3),
