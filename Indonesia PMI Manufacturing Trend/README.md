@@ -5,6 +5,6 @@ In this repository, I demonstrate how to visualize Indonesia PMI Manufacturing d
 Higher value than 50 indicates country manufacturing sector is in expansion phase, whereas value less than 50 indicates contraction phase.
 
 Several information that emerge from this visualization can be examined as follows:
-- Indonesia has suffered two different phases of consecutive manufacturing contraction over the last 2 years between 2024 and 2025. This phenomena occurs due to various reason, including the weakening of global and domestic demand for manufacturing goods and global trade uncertainty.
+- Indonesia has suffered two different phases of consecutive manufacturing contraction over the last 2 years between 2024 and 2025. This phenomenon occurs due to various reason, including the weakening of global and domestic demand for manufacturing goods and global trade uncertainty.
 
 - In 2024, Indonesian manufacturing sector underwent five-month consecutive contractions regarding PMI Manufacturing. Based on various sources, it can be considered that the contractions are in accordance with slowing demand for manufacturing goods, both globally and domestically. It was exacerbated by the decreasing Indonesian consumers' purchasing power, hence generated ripple-effect on manufacturing industry. 
