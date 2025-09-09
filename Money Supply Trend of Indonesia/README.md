@@ -1,4 +1,5 @@
 ## Indonesia Money Supply Trend in Indonesia  
+![Indonesia Money Supply Trend](https://github.com/user-attachments/assets/41ac4548-32b5-467b-a479-2494a6a38a00)
 
 This folder represents my work pertaining to visualizing Indonesia money supply data over the period of January 2020 until June 2025,
 encapsulating both during- and post-pandemic period.
