@@ -1,2 +1,5 @@
 # Data Visualization and Analytics with R Programming
+
+> **Utilizing R Programming Language and Packages for performing Data Visualization in the Fields of Economics & Finance**
+
 In this repository, I implement my technical skill regarding R programming through data visualization and analytics processes. Most of data that will be employed are around Economics and Banking & Finance. In addition, the objective of this repository is to inform audience the current trend of Economics and Bankinig & Finance. Most of visualizations are devised by employing various data visualization packages, including ggplot2 and plotly. I perform continuous update as possible as I can to this repository.
