@@ -1,6 +1,6 @@
-# Indonesia Digital Payment Systems' Transactions Value Trend Over Time
+# Indonesia Digital Payment Systems' Transactions Volume Trend Over Time
 # This code presents how to create time series chart by utilizing R Packages
-# Where it examies the trend of Indonesia's Digital Payment Systems landscape for Transactions Value
+# Where it examies the trend of Indonesia's Digital Payment Systems landscape for Transactions Volume
 
 # Load Library
 library(ggplot2)
@@ -28,9 +28,9 @@ bi_rtgs <- bi_rtgs %>% mutate(system_name = "BI-RTGS System")
 
 # Append all digital payment systems data into single dataframe
 digital_pays <- bind_rows(debit_cards, credit_cards, e_money, sknbi, bi_rtgs)
-digital_pays # view the data
+digital_pays # view the latest dataframe
 
-# Inspect All variables classification
+# Inspect All varuables classification
 class(digital_pays$Date)
 class(digital_pays$transactions_value)
 class(digital_pays$transactions_volume)
@@ -47,12 +47,12 @@ digital_pays <- digital_pays %>%
   group_by(system_name) %>%
   mutate(
     yoy_transactions_value = if_else(
-      !is.na(lag(transactions_value, 12)) & lag(transactions_value, 12) >0,
+      !is.na(lag(transactions_value, 12)) & lag(transactions_value, 12) > 0,
       (transactions_value / lag(transactions_value, 12) - 1) * 100,
       NA_real_
     ),
     yoy_transactions_volume = if_else(
-      !is.na(lag(transactions_volume, 12)) & lag(transactions_volume, 12) >0,
+      !is.na(lag(transactions_volume, 12)) & lag(transactions_volume, 12) > 0,
       (transactions_volume / lag(transactions_volume, 12) - 1) * 100,
       NA_real_
     )
@@ -61,13 +61,13 @@ ungroup()
 
 # Perform Additional feature creation, including:
 # 1. Round the yoy growth results into 2 decimal numbers only
-# 2. Transform transactions value data into Trillion Rupiah (IDR) format
-# 3. Create a column in which determine each Digital Payment Systems' color.
+# 2. Transform transactions volume data into million of transactions format
+# 3. Create a column in which determine each Digital payment Systems' color.
 digital_pays <- digital_pays %>%
   mutate(
     yoy_transactions_value = round(yoy_transactions_value, 2),
     yoy_transactions_volume = round(yoy_transactions_volume, 2),
-    trillion_tvalue = round((transactions_value / 1000), 2),
+    million_tvolume = round((transactions_volume / 1000), 2),
     system_color = case_when(
       system_name == "Debit Cards" ~ "#720F32",
       system_name == "Credit Cards" ~ "#114665",
@@ -78,89 +78,95 @@ digital_pays <- digital_pays %>%
   )
 
 # Create a function to assign visualization theme
-vis_theme <- function(base_size = 12, 
+vis_theme <- function(base_size = 12,
                       base_family = "Arial",
                       base_color = "#333333") {
-    theme(
-      panel.grid = element_blank(),
-      panel.border = element_blank(),
-      panel.background = element_rect(fill = "#F6F6F6"),
-      plot.background = element_rect(fill = "#F6F6F6"),
-      plot.title = ggtext::element_markdown(
-        family = "Times New Roman", face = "bold",
-        color = base_color, size = base_size + 2),
-      plot.subtitle = ggtext::element_markdown(
-        family = base_family, color = base_color,
-        size = base_size - 2
-      ),
-      plot.caption = ggtext::element_markdown(
-        family = base_family, color = base_color,
-        size = base_size - 3
-      ),
-      legend.background = element_rect(fill = "#F6F6F6", color = NA),
-      legend.key = element_rect(fill = "#F6F6F6", color = NA),
-      legend.title = element_text(
-        family = base_family, face = "bold",
-        color = base_color, size = base_size -2
-      ),
-      legend.text = element_text(
-        family = base_family, color = base_color,
-        size = base_size - 2
-      ),
-      axis.text.x = element_text(
-        family = base_family, color = base_color,
-      size = base_size - 2),
-      axis.text.y = element_text(
-        family = base_family, color = base_color,
-        size = base_size - 2,
-      ),
-      axis.title.y = ggtext::element_markdown(
-        family = base_family, color = base_color,
-        size = base_size - 2, angle = 90
-      ),
-      axis.title.x = ggtext::element_markdown(
-        family = base_family, color = base_color,
-        size = base_size - 2
-      ),
-      axis.line.y = element_line(color = base_color, linewidth = 0.30),
-      axis.line.x = element_blank(),
-      axis.ticks.length = unit(0.20, "cm"),
-      axis.ticks = element_line(color = base_color)
-    )
+  theme(
+    panel.grid = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_rect(fill = "#F6F6F6"),
+    plot.background = element_rect(fill = "#F6F6F6"),
+    plot.title = ggtext::element_markdown(
+      family = "Times New Roman", face = "bold",
+      color = base_color, size = base_size + 2
+    ),
+    plot.subtitle = ggtext::element_markdown(
+      family = base_family, color = base_color,
+      size = base_size - 3
+    ),
+    plot.caption = ggtext::element_markdown(
+      family = base_family, color = base_color,
+      size = base_size - 3
+    ),
+    legend.background = element_rect(fill = "#F6F6F6", color = NA),
+    legend.key = element_rect(fill = "#F6F6F6", color = NA),
+    legend.title = element_text(
+      family = base_family, face = "bold",
+      color = base_color, size = base_size - 2
+    ),
+    legend.text = element_text(
+      family = base_family, color = base_color,
+      size = base_size - 2
+    ),
+    axis.text.x = element_text(
+      family = base_family, color = base_color,
+      size = base_size - 2
+    ),
+    axis.text.y = element_text(
+      family = base_family, color = base_color,
+      size = base_size - 2
+    ),
+    axis.title.y = ggtext::element_markdown(
+      family = base_family, color = base_color,
+      size = base_size - 2, angle = 90
+    ),
+    axis.title.x = ggtext::element_markdown(
+      family = base_family, color = base_color,
+      size = base_size - 2
+    ),
+    axis.line.y = element_line(color = base_color, linewidth = 0.30),
+    axis.line.x = element_blank(),
+    axis.ticks.length = unit(0.20, "cm"),
+    axis.ticks = element_line(color = base_color)
+  )
 }
 
 # Perform Data Visualization process
-## 1. Debit Cards Transactions Value
-debit_value <- digital_pays %>%
+## 1. Debit Cards Transactions Volume
+debit_volume <- digital_pays %>%
   filter(system_name == "Debit Cards") %>%
   ggplot(
     mapping = aes(
       x = Date,
-      y = trillion_tvalue
+      y = million_tvolume
     )
   ) +
-  geom_area(alpha = 0.6, linewidth = 0.5, 
-            position = "identity",
-            color = "#990F3D",
-            fill = unique(digital_pays$system_color[digital_pays$system_name == "Debit Cards"])) +
+  geom_area(
+    alpha = 0.6, linewidth = 0.5,
+    position = "identity",
+    color = "#990F3D",
+    fill = unique(
+      digital_pays$system_color[digital_pays$system_name == "Debit Cards"]
+    )
+  ) +
   geom_hline(
     yintercept = 0,
     color = "#333333",
     linewidth = 0.30
   ) +
   labs(
-    title = "Indonesia Debit Cards Transactions Value <span style = 'color:#990F3D;'><b>Continues Showing Upward Trend</b></span>",
-    subtitle = "This figure reports Indonesia's Debit Cards transactions value trend over the period of Jan-2009 until Nov-2025.",
-    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic <br>LinkedIn: Muhammad Adisurya Pratama | GitHub: madisuryapr</br>",
-    x = "<b>Date</b>", y = "<b>Trillion IDR</b>"
+    title = "Indonesia Debit Cards Transactions Volume <span style = 'color:#990F3D;'><b>Shows Upward Trend Over Time</b></span>",
+    subtitle = "Debit Cards transactions volume over the period of Jan-2009 until Nov-2025.",
+    caption = "<b>Data Source:</b> Bank Indonesia - Payment System and Financial Market Infrastructure Statistic<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+    x = "<b>Date</b>", y = "<b>Millions of Transactions</b>"
   ) +
   scale_y_continuous(
     expand = c(0,0),
-    breaks = seq(0, 800, by = 100)
+    breaks = seq(0, 700, by = 100)
   ) +
   coord_cartesian(
     clip = "off",
-    ylim = c(0,800)
+    ylim = c(0, 700)
   ) +
   scale_x_date(
     expand = expansion(mult = c(0, 0.03)),
@@ -174,22 +180,24 @@ debit_value <- digital_pays %>%
   ) +
   vis_theme()
 
-debit_value
+debit_volume
 
-## 2. Credit Cards Transactions Value
-credit_value <- digital_pays %>%
+## 2. Credit Cards Transactions Volume
+credit_volume <- digital_pays %>%
   filter(system_name == "Credit Cards") %>%
   ggplot(
     mapping = aes(
       x = Date,
-      y = trillion_tvalue
+      y = million_tvolume
     )
   ) +
   geom_area(
     alpha = 0.6, linewidth = 0.5,
     color = "#114665",
     position = "identity",
-    fill = unique(digital_pays$system_color[digital_pays$system_name == "Credit Cards"])
+    fill = unique(
+      digital_pays$system_color[digital_pays$system_name == "Credit Cards"]
+    )
   ) +
   geom_hline(
     yintercept = 0,
@@ -197,18 +205,18 @@ credit_value <- digital_pays %>%
     linewidth = 0.30
   ) +
   labs(
-    title = "Credit Cards Transactions Value in Indonesia <span style = 'color:#114665;'><b>Experienced Significant Decline at The Beginning of COVID-19 Pandemic</b></span>",
-    subtitle = "This figure represents Credit Cards Transactions Value for Indonesia, encompassing Jan-2009 until Nov-2025 period of time.",
-    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br>LinkedIn: Muhammad Adisurya Pratama | GitHub: madisuryapr</br>",
-    x = "<b>Date</b>", y = "<b>Trillion IDR</b>"
+    title = "Credit Cards Transactions Volume in Indonesia <span style = 'color:#114665;'><b>Declined at The Beginning of COVID-19 Pandemic</b></span>",
+    subtitle = "Transactions Volume of Credit Cards from Jan-2009 to Nov-2025.",
+    caption = "<b>Data Source:</b> Bank Indonesia - Payment System and Financial Market Infrastructure Statistic<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+    x = "<b>Date</b>", y = "<b>Millions of Transactions</b>"
   ) +
   scale_y_continuous(
-    expand = c(0,0),
-    breaks = seq(0, 45, by = 5)
+    expand = c(0, 0),
+    breaks = seq(0, 50, by = 5)
   ) +
   coord_cartesian(
     clip = "off",
-    ylim = c(0,45)
+    ylim = c(0, 50)
   ) +
   scale_x_date(
     expand = expansion(mult = c(0, 0.03)),
@@ -222,15 +230,15 @@ credit_value <- digital_pays %>%
   ) +
   vis_theme()
 
-credit_value
+credit_volume
 
-## 3. Electronic Money Transactions Value
-emoney_value <- digital_pays %>%
+## 3. Electronic Money Transactions Volume
+emoney_volume <- digital_pays %>%
   filter(system_name == "Electronic Money") %>%
   ggplot(
     mapping = aes(
       x = Date,
-      y = trillion_tvalue
+      y = million_tvolume
     )
   ) +
   geom_area(
@@ -247,22 +255,24 @@ emoney_value <- digital_pays %>%
     linewidth = 0.30
   ) +
   labs(
-    title = "Indonesia Electronic Money Transactions Value Exhibits <span style = 'color:#9DACCC;'><b>Significant Upward Trend After COVID-19 Pandemic</b></span>",
-    subtitle = "This figure reports Electronic Money Transactions Value for Indonesia, covering Jan-2009 until Nov-2025 time period.",
-   caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br>LinkedIn: Muhammad Adisurya Pratama | GitHub: madisuryapr</br>",
-   x = "<b>Date</b>", y = "<b>Trillion IDR</b>"
+    title = "Electronic Money Transactions Volume in Indonesia <span style = 'color:#9DACCC;'><b>Surges Significantly After the Eruption of COVID-19 Pandemic</b></span>",
+    subtitle = "Electronic Money transactions volume for Jan-2009 until Nov-2025.",
+    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistics<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+    x = "<b>Date</b>", y = "<b>Millions of Transactions</b>"
   ) +
   scale_y_continuous(
-    expand = c(0,0),
-    breaks = seq(0, 360, by = 60)
+    expand = c(0, 0),
+    breaks = seq(0, 3200, by = 320)
   ) +
   coord_cartesian(
     clip = "off",
-    ylim = c(0, 360)
+    ylim = c(0, 3200)
   ) +
   scale_x_date(
     expand = expansion(mult = c(0, 0.03)),
-    limits = as.Date(c(min(digital_pays$Date), max(digital_pays$Date))),
+    limits = as.Date(
+      c(min(digital_pays$Date), max(digital_pays$Date))
+    ),
     breaks = seq(
       from = min(digital_pays$Date),
       to = max(digital_pays$Date),
@@ -272,15 +282,15 @@ emoney_value <- digital_pays %>%
   ) +
   vis_theme()
 
-emoney_value
+emoney_volume
 
 ## 4. SKNBI Clearing System
-sknbi_value <- digital_pays %>%
+sknbi_volume <- digital_pays %>%
   filter(system_name == "BI Clearing System") %>%
   ggplot(
     mapping = aes(
       x = Date,
-      y = trillion_tvalue
+      y = million_tvolume
     )
   ) +
   geom_area(
@@ -297,40 +307,42 @@ sknbi_value <- digital_pays %>%
     linewidth = 0.30
   ) +
   labs(
-    title = "Sistem Kliring Nasional Bank Indonesia (SKNBI) System Transactions Value <span style = 'color:#003E91;'><b>Performs Gradual Increase Over Time</b></span>",
-    subtitle = "This figure shows SKNBI system transactions over the period of Jan-2009 until Nov-2025.",
-    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br>LinkedIn: Muhammad Adisurya Pratama | GitHub: madisuryapr</br>",
-   x = "<b>Date</b>", y = "<b>Trillion IDR</b>"
+    title = "Sistem Kliring Nasional Bank Indonesia (SKNBI) System Transactions Volume Performance <span style = 'color:#003E91;'><b>Remain Stable Over Time</b></span>",
+    subtitle = "SKNBI Clearing System transactions volume over the period of Jan-2009 until Nov-2025.",
+    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+   x = "<b>Date</b>", y = "<b>Millions of Transactions</b>"
   ) +
   scale_y_continuous(
-    expand = c(0,0),
-    breaks = seq(0, 550, by = 50)
+    expand = c(0, 0),
+    breaks = seq(0, 20, by = 4)
   ) +
   coord_cartesian(
     clip = "off",
-    ylim = c(0, 550)
+    ylim = c(0, 20)
   ) +
   scale_x_date(
     expand = expansion(mult = c(0, 0.03)),
-    limits = as.Date(c(min(digital_pays$Date), max(digital_pays$Date))),
+    limits = as.Date(
+      c(min(digital_pays$Date), max(digital_pays$Date))
+    ),
     breaks = seq(
       from = min(digital_pays$Date),
       to = max(digital_pays$Date),
       by = "1 year"
     ),
-    date_labels = "%b-%y"
+    date_labels = "%b-%y" 
   ) +
   vis_theme()
 
-sknbi_value
+sknbi_volume
 
 ## 5. BI-RTGS System
-birtgs_value <- digital_pays %>%
+birtgs_volume <- digital_pays %>%
   filter(system_name == "BI-RTGS System") %>%
   ggplot(
     mapping = aes(
       x = Date,
-      y = trillion_tvalue
+      y = transactions_volume
     )
   ) +
   geom_area(
@@ -347,18 +359,18 @@ birtgs_value <- digital_pays %>%
     linewidth = 0.30
   ) +
   labs(
-    title = "BI-RTGS System Transactions Value <span style = 'color:#177EE6;'><b>Shows Upward Trajectory in Long-Term</b></span>",
-    subtitle = "This figure shows Bank Indonesia Real-Time Gross Settlement (BI-RTGS) system transactions value over the period of Jan-2009 until Nov-2025.",
-   caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
-   x = "<b>Date</b>", y = "<b>Trillion IDR</b>"
+    title = "BI-RTGS Transactions Volume <span style = 'color:#177EE6;'><b>Relatively Stable Amidst COVID-19 Pandemic</b></span>",
+    subtitle = "Bank Indonesia Real-Time Gross Settlement (BI-RTGS) system transactions volume over the period of Jan-2009 until Nov-2025.",
+    caption = "<b>Data Source:</b> Bank Indonesia - Payment Systems and Financial Market Infrastructure Statistic<br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+   x = "<b>Date</b>", y = "<b>Thousands of Transactions</b>"
   ) +
   scale_y_continuous(
-    expand = c(0,0),
-    breaks = seq(0, 25000, by = 2500)
+    expand = c(0, 0),
+    breaks = seq(0, 1800, by = 300)
   ) +
   coord_cartesian(
     clip = "off",
-    ylim = c(0, 25000)
+    ylim = c(0, 1800)
   ) +
   scale_x_date(
     expand = expansion(mult = c(0, 0.03)),
@@ -372,7 +384,7 @@ birtgs_value <- digital_pays %>%
   ) +
   vis_theme()
 
-birtgs_value
+birtgs_volume
 
 # Create a function to save each visualization
 save_plot <- function(
@@ -392,5 +404,6 @@ save_plot <- function(
 
 # Perform simulation for save_plot() function.
 save_plot(
-  plot_object = birtgs_value,
-  file_name = "BI-RTGS System Transactions Value.jpeg")
+  plot_object = birtgs_volume,
+  file_name = "BI-RTGS System Transactions Volume.jpeg"
+)
