@@ -1,4 +1,8 @@
 ## Top 10 Indonesian Banks Based on Total Assets
+
+> **A Data Visualization for Examining 10 Biggest Indonesian Banks Based on Their Total Assets**
+
+
 ![Top 10 Indonesian Banks Q1-2025 from Total Assets](https://github.com/user-attachments/assets/6c761109-880b-4d9d-b5a3-4c7d44dc1fc2)
 
 In this repository, I visualized Top 10 Indonesian Banks based on their total assets as of Q1-2025. I obtained the data from Indonesia news channel namely CNBC Indonesia. Please kindly refer to this news for detailed information regarding all data I utilized: [CNBC Indonesia news about Banks Total Assets](https://www.cnbcindonesia.com/market/20250523164013-17-635768/10-bank-terbesar-di-ri-2025-ada-yang-asetnya-lompat-161)  
