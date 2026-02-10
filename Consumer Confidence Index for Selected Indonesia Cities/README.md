@@ -1,4 +1,8 @@
 ## Consumer Confidence Trend for Selected Indonesian Cities
+
+> **Jakarta and Samarinda become Two Cities with the Highest Consumer Confidence.**
+
+
 ![Indonesia Consumer Confidence](https://github.com/user-attachments/assets/e6910260-71a9-44c4-9ef5-2bb33c221339)
 
 This repository reports the performance of Consumer Confidence for 9 selected Indonesian cities that represents 3 different regions, namely Sumatera, Jawa, and Kalimantan. I utilized monthly data of Consumer Confidence Index (CCI), published regularly by Bank Indonesia, encompassing January 2018 until August 2025. Value of 100 reflects the threshold whether consumers are in optimism or pessimism stance. CCI higher than 100 indicates optimism among consumers, and vice versa.  
