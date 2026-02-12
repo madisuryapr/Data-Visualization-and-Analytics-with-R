@@ -1,6 +1,6 @@
 # Indonesia Digital Payment Systems' Transactions Value Trend Over Time
 # This code presents how to create time series chart by utilizing R Packages
-# Where it examies the trend of Indonesia's Digital Payment Systems landscape for Transactions Value
+# Where it examies the trend of Indonesia Digital Payments' Transactions Value
 
 # Load Library
 library(ggplot2)
@@ -394,3 +394,4 @@ save_plot <- function(
 save_plot(
   plot_object = birtgs_value,
   file_name = "BI-RTGS System Transactions Value.jpeg")
+
