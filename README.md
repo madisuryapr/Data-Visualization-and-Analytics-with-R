@@ -1,6 +1,6 @@
 # Data Visualization and Analytics with R Programming
 
-![R Language](https://img.shields.io/badge/R_4.4.3-276DC3?style=for-the-badge&logo=r&logoColor=white&logoSize=auto&label=Language&color=4169E1)
+![R Language](https://img.shields.io/badge/R_4.6.1-276DC3?style=for-the-badge&logo=r&logoColor=white&logoSize=auto&label=Language&color=4169E1)
 
 > **Utilizing R Programming Language and Packages for performing Data Visualization in the Fields of Economics, and Banking & Finance**
 
