@@ -450,3 +450,284 @@ save_widget(
   widget_object = vis_bonds5yr_interactive,
   file_name = "Result_plotly/Indonesia 5-Year Government Bonds Yield.html"
 )
+
+# Indonesian Government 10-Year Bonds Yield
+vis_bonds10yr <- id_bonds10yr %>%
+  ggplot(
+    mapping = aes(
+      x = day_date,
+      y = yield,
+      text = paste0(
+        "<b>Date:</b> ", format(day_date, "%d %b %Y"), "<br>",
+        "<b>Yield:</b> ", sprintf("%.2f%%", yield)
+      )
+    )
+  ) +
+  geom_line(
+    aes(
+      group = 1
+    ),
+    color = "#345B63",
+    linewidth = 0.5
+  ) +
+  geom_hline(
+    yintercept = 0, color = "#2C2F38",
+    linewidth = 0.5, alpha = 0.75
+  ) +
+  labs(
+    title    = "Indonesia's 10-Year Bonds Yield <span style = 'color:#990F3D;'><b>Reaches Its Post-Pandemic Peak During Q2-2026</b></span>",
+    subtitle = "Indonesian Government 10-Year Bonds Yield trend over the period of January 2020 until September 2026.",
+    caption  = "<b>Data Source:</b> Investing.com <br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+    x = "<b>Date</b>", y = "<b>Percent (%)</b>"
+  ) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    breaks = seq(5, 9, by = 1)
+  ) +
+  coord_cartesian(
+    clip = "off",
+    ylim = c(5, 9)
+  ) +
+  scale_x_date(
+    expand = expansion(mult = c(0, 0.02)),
+    limits = as.Date(
+      c(
+        min(id_bonds10yr$day_date), 
+        as.Date("2026-09-30")
+      )
+    ),
+    breaks = unique(
+      c(
+        seq.Date(
+          from = as.Date("2020-01-02"),
+          to = as.Date("2026-09-30"),
+          by = "3 months"
+        ),
+        as.Date("2026-09-30")
+      )
+    ),
+    date_labels = "%b-%y"
+  ) +
+  visual_theme()
+
+vis_bonds10yr
+
+# Make 10-Year Bonds Yield Visualization interactive with ggplotly() function
+vis_bonds10yr_interactive <- ggplotly(
+  vis_bonds10yr,
+  tooltip = "text"
+) %>%
+  layout(
+    title = list(
+      text = paste0(
+        "<b>Indonesia's 10-Year Bonds Yield</b> ",
+        "<span style = 'color:#990F3D;'><b>",
+        "Reaches Its Post-Pandemic Peak During Q2-2026",
+        "</b></span>",
+        "<br><span style ='font-size:12px; color:#333333;'>",
+        "Indonesian Government 10-year Bonds Yield trend ",
+        "over the period of January 2020 until September 2026.",
+        "</span>"
+      ),
+      x = 0,
+      xanchor = "left"
+    ),
+    xaxis = list(
+      rangeslider = list(
+        visible = TRUE,
+        thickness = 0.10
+      )
+    ),
+    hovermode = "x unified",
+    hoverlabel = list(
+      font = list(
+        family = "Helvetica, Arial, sans-serif",
+        size = 12,
+        color = "#333333"
+      ),
+      backgroundcolor = "#FFFFFF",
+      bordercolor = "#C0C0C0"
+    ),
+    annotations = list(
+      list(
+        xref = "paper",
+        yref = "paper",
+        x = 0,
+        y = -0.32,
+        xanchor = "left",
+        yanchor = "top",
+        align = "left",
+        text = paste0(
+          "<b>Data Source:</b> Investing.com",
+          "<br><b>LinkedIn:</b> Muhammad Adisurya Pratama",
+          " | <b>GitHub:</b> madisuryapr"
+        ),
+        font = list(
+          family = "Arial",
+          size = 11,
+          color = "#333333"
+        )
+      )
+    ),
+    margin = list(
+      l = 65,
+      r = 30,
+      t = 110,
+      b = 130
+    )
+  )
+
+# View Interactive chart
+vis_bonds10yr_interactive
+
+# Save both ggplot2 and ggplotly visualization results
+save_plot(
+  plot_object = vis_bonds10yr,
+  file_name = "Result_ggplot2/Indonesia 10-Year Government Bonds Yield.jpeg"
+)
+
+save_widget(
+  widget_object = vis_bonds10yr_interactive,
+  file_name = "Result_plotly/Indonesia 10-Year Government Bonds Yield.html"
+)
+
+# Indonesian Government 30-Year Bonds Yield
+vis_bonds30yr <- id_bonds30yr %>%
+  ggplot(
+    mapping = aes(
+      x = day_date,
+      y = yield,
+      text = paste0(
+        "<b>Date:</b> ", format(day_date, "%d %b %Y"), "<br>",
+        "<b>Yield:</b> ", sprintf("%.2f%%", yield)
+      )
+    )
+  ) +
+  geom_line(
+    aes(
+      group = 1
+    ),
+    color = "#E22227",
+    linewidth = 0.5
+  ) +
+  geom_hline(
+    yintercept = 0, color = "#2C2F38",
+    linewidth = 0.5, alpha = 0.75
+  ) +
+  labs(
+    title    = "Indonesia's 30-Year Bonds Yield <span style = 'color:#990F3D;'><b>Volatility Tend to be More Stable Compared to Other Yields</b></span>",
+    subtitle = "Indonesian Government 30-Year Bonds Yield trend over the period of January 2020 until September 2026.",
+    caption  = "<b>Data Source:</b> Investing.com <br><b>LinkedIn:</b> Muhammad Adisurya Pratama | <b>GitHub:</b> madisuryapr</br>",
+    x = "<b>Date</b>", y = "<b>Percent (%)</b>"
+  ) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    breaks = seq(6, 9, by = 0.5)
+  ) +
+  coord_cartesian(
+    clip = "off",
+    ylim = c(6, 9)
+  ) +
+  scale_x_date(
+    expand = expansion(mult = c(0, 0.02)),
+    limits = as.Date(
+      c(
+        min(id_bonds30yr$day_date), 
+        as.Date("2026-09-30")
+      )
+    ),
+    breaks = unique(
+      c(
+        seq.Date(
+          from = as.Date("2020-01-02"),
+          to = as.Date("2026-09-30"),
+          by = "3 months"
+        ),
+        as.Date("2026-09-30")
+      )
+    ),
+    date_labels = "%b-%y"
+  ) +
+  visual_theme()
+
+vis_bonds30yr
+
+# Make 30-Year Bonds Yield Visualizztion interactive with ggplotly() function
+vis_bonds30yr_interactive <- ggplotly(
+  vis_bonds30yr,
+  tooltip = "text"
+) %>%
+  layout(
+    title = list(
+      text = paste0(
+        "<b>Indonesia's 30-Year Bonds Yield</b> ",
+        "<span style = 'color:#990F3D;'><b>",
+        "Volatility Tend to be More Stable Copared to Other Yields",
+        "</b></span>",
+        "<br><span style ='font-size:12px; color:#333333;'>",
+        "Indonesian Government 30-year Bonds Yield trend ",
+        "over the period of January 2020 until September 2026.",
+        "</span>"
+      ),
+      x = 0,
+      xanchor = "left"
+    ),
+    xaxis = list(
+      rangeslider = list(
+        visible = TRUE,
+        thickness = 0.10
+      )
+    ),
+    hovermode = "x unified",
+    hoverlabel = list(
+      font = list(
+        family = "Helvetica, Arial, sans-serif",
+        size = 12,
+        color = "#333333"
+      ),
+      backgroundcolor = "#FFFFFF",
+      bordercolor = "#C0C0C0"
+    ),
+    annotations = list(
+      list(
+        xref = "paper",
+        yref = "paper",
+        x = 0,
+        y = -0.32,
+        xanchor = "left",
+        yanchor = "top",
+        align = "left",
+        text = paste0(
+          "<b>Data Source:</b> Investing.com",
+          "<br><b>LinkedIn:</b> Muhammad Adisurya Pratama",
+          " | <b>GitHub:</b> madisuryapr"
+        ),
+        font = list(
+          family = "Arial",
+          size = 11,
+          color = "#333333"
+        )
+      )
+    ),
+    margin = list(
+      l = 65,
+      r = 30,
+      t = 110,
+      b = 130
+    )
+  )
+
+# View Interactive chart
+vis_bonds30yr_interactive
+
+# Save both ggplot2 and ggplotly visualization results
+save_plot(
+  plot_object = vis_bonds30yr,
+  file_name = "Result_ggplot2/Indonesia 30-Year Government Bonds Yield.jpeg"
+)
+
+save_widget(
+  widget_object = vis_bonds30yr_interactive,
+  file_name = "Result_plotly/Indonesia 30-Year Government Bonds Yield.html"
+)
+ 
